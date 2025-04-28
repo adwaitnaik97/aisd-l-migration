@@ -12,6 +12,7 @@
 #include <vector>
 #include <string>
 #include <yaml-cpp/yaml.h>
+#include <sqlite3.h>
 
 /**
  * Boost includes (not needed for ROS2)
@@ -67,7 +68,8 @@
 // #include <ros_type_introspection/ros_introspection.hpp>
 // #include <topic_tools/shape_shifter.h>
 
-struct topicInfo{
+struct topicInfo
+{
     std::string topicName;
     std::string topicType;
 };
@@ -88,16 +90,18 @@ public:
     std::vector<std::string> topicsList;
     QString filePath;
 
-    std::vector<topicInfo>readYAMLFile(const std::string &yamlFilePath);
+    std::vector<topicInfo> readYAMLFile(const std::string &yamlFilePath);
 
     void readDB3File(const std::string &db3FilePath);
+
+    void executeSQL(const std::string &db3FilePath);
 
     // void getTopicList(const std::string &path);
 
     void createCheckBoxWidget(QDialog *dialog, const std::set<std::string> &topics);
 
 private:
-    //std::set<std::string> topics;
+    // std::set<std::string> topics;
     std::vector<topicInfo> topics;
     std::vector<QCheckBox *> checkBoxList;
     rclcpp::Node::SharedPtr node_;

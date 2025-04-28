@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/build/rosbags_to_csv",
+  "command": "/usr/bin/c++ -DDEFAULT_RMW_IMPLEMENTATION=rmw_cyclonedds_cpp -DPLUGINLIB__DISABLE_BOOST_FUNCTIONS -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DRCUTILS_ENABLE_FAULT_INJECTION -I/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/include -I/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/include/MessagesHandler -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -isystem /opt/ros/galactic/include -isystem /opt/ros/galactic/include/moodycamel -Wall -g  -Wall -Wextra -Wpedantic -fPIC -std=gnu++17 -o CMakeFiles/rosbags_to_csv.dir/src/rosbags_to_csv.cpp.o -c /home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/src/rosbags_to_csv.cpp",
+  "file": "/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/src/rosbags_to_csv.cpp"
+}
+]

@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-70e03038180b1ceda1b2.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.25.2"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "rosbags_to_csv",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "rosbags_to_csv::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-rosbags_to_csv-6d0fba8a6e9adaa2c3ff.json",
+					"name" : "rosbags_to_csv",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "rosbags_to_csv_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-rosbags_to_csv_uninstall-68afc581c38497019ab4.json",
+					"name" : "rosbags_to_csv_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-818df4f72cce217061ca.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/build/rosbags_to_csv",
+		"source" : "/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}

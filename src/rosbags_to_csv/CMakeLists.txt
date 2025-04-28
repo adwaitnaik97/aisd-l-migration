@@ -21,6 +21,7 @@ find_package(rosbag2_cpp REQUIRED)
 find_package(rosbag2_storage REQUIRED)
 find_package(rosbag2_transport REQUIRED)
 find_package(Qt5 REQUIRED COMPONENTS Widgets)
+find_package(SQLite3 REQUIRED)
 
 # Include directories
 include_directories(
@@ -43,7 +44,7 @@ ament_target_dependencies(rosbags_to_csv
   yaml-cpp
 )
 
-target_link_libraries(rosbags_to_csv Qt5::Widgets)
+target_link_libraries(rosbags_to_csv Qt5::Widgets SQLite::SQLite3)
 
 # Install targets
 install(TARGETS rosbags_to_csv

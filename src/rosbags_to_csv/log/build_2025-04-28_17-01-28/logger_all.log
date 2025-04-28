@@ -1,0 +1,111 @@
+[0.170s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.170s] DEBUG:colcon:Parsed command line arguments: Namespace(allow_overriding=[], ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7fe77ae5cfa0>>, merge_install=False, metas=['./colcon.meta'], packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=20, paths=None, symlink_install=False, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7fe77ae5cfa0>, verb_name='build', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7fe77adef4f0>)
+[0.247s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.247s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.247s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.247s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.247s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.248s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.248s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv'
+[0.248s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.248s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.248s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.248s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.248s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.248s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.248s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.248s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.248s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.259s] DEBUG:colcon.colcon_core.package_identification:Package '.' with type 'ros.ament_cmake' and name 'rosbags_to_csv'
+[0.259s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.259s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.259s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.259s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.259s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.270s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.270s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.271s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[0.271s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/opt/ros/foxy' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[0.271s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[0.271s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 0 installed packages in /home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install
+[0.272s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 268 installed packages in /opt/ros/galactic
+[0.273s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.313s] Level 5:colcon.colcon_core.verb:set package 'rosbags_to_csv' build argument 'cmake_args' from command line to 'None'
+[0.313s] Level 5:colcon.colcon_core.verb:set package 'rosbags_to_csv' build argument 'cmake_target' from command line to 'None'
+[0.313s] Level 5:colcon.colcon_core.verb:set package 'rosbags_to_csv' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.313s] Level 5:colcon.colcon_core.verb:set package 'rosbags_to_csv' build argument 'cmake_clean_cache' from command line to 'False'
+[0.313s] Level 5:colcon.colcon_core.verb:set package 'rosbags_to_csv' build argument 'cmake_clean_first' from command line to 'False'
+[0.313s] Level 5:colcon.colcon_core.verb:set package 'rosbags_to_csv' build argument 'cmake_force_configure' from command line to 'False'
+[0.313s] Level 5:colcon.colcon_core.verb:set package 'rosbags_to_csv' build argument 'ament_cmake_args' from command line to 'None'
+[0.313s] Level 5:colcon.colcon_core.verb:set package 'rosbags_to_csv' build argument 'catkin_cmake_args' from command line to 'None'
+[0.313s] Level 5:colcon.colcon_core.verb:set package 'rosbags_to_csv' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.313s] DEBUG:colcon.colcon_core.verb:Building package 'rosbags_to_csv' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/build/rosbags_to_csv', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv', 'merge_install': False, 'path': '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv', 'symlink_install': False, 'test_result_base': None}
+[0.313s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.314s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.314s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv' with build type 'ament_cmake'
+[0.314s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv'
+[0.316s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.316s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.316s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.324s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/build/rosbags_to_csv': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/galactic:/opt/ros/foxy /usr/local/bin/cmake /home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv -DCMAKE_INSTALL_PREFIX=/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv
+[4.753s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/build/rosbags_to_csv' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/galactic:/opt/ros/foxy /usr/local/bin/cmake /home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv -DCMAKE_INSTALL_PREFIX=/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv
+[4.754s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/build/rosbags_to_csv': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/galactic:/opt/ros/foxy /usr/local/bin/cmake --build /home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/build/rosbags_to_csv -- -j20 -l20
+[8.583s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/build/rosbags_to_csv' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/galactic:/opt/ros/foxy /usr/local/bin/cmake --build /home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/build/rosbags_to_csv -- -j20 -l20
+[8.589s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/build/rosbags_to_csv': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/galactic:/opt/ros/foxy /usr/local/bin/cmake --install /home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/build/rosbags_to_csv
+[8.596s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(rosbags_to_csv)
+[8.596s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/build/rosbags_to_csv' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/galactic:/opt/ros/foxy /usr/local/bin/cmake --install /home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/build/rosbags_to_csv
+[8.598s] Level 1:colcon.colcon_core.environment:checking '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv' for CMake module files
+[8.598s] Level 1:colcon.colcon_core.environment:checking '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv' for CMake config files
+[8.598s] Level 1:colcon.colcon_core.shell:create_environment_hook('rosbags_to_csv', 'cmake_prefix_path')
+[8.598s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/share/rosbags_to_csv/hook/cmake_prefix_path.ps1'
+[8.599s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/share/rosbags_to_csv/hook/cmake_prefix_path.dsv'
+[8.600s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/share/rosbags_to_csv/hook/cmake_prefix_path.sh'
+[8.601s] Level 1:colcon.colcon_core.environment:checking '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/lib'
+[8.601s] Level 1:colcon.colcon_core.environment:checking '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/bin'
+[8.601s] Level 1:colcon.colcon_core.environment:checking '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/lib/pkgconfig/rosbags_to_csv.pc'
+[8.601s] Level 1:colcon.colcon_core.environment:checking '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/lib/python3.8/site-packages'
+[8.602s] Level 1:colcon.colcon_core.environment:checking '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/bin'
+[8.602s] INFO:colcon.colcon_core.shell:Creating package script '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/share/rosbags_to_csv/package.ps1'
+[8.602s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/share/rosbags_to_csv/package.dsv'
+[8.603s] INFO:colcon.colcon_core.shell:Creating package script '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/share/rosbags_to_csv/package.sh'
+[8.603s] INFO:colcon.colcon_core.shell:Creating package script '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/share/rosbags_to_csv/package.bash'
+[8.603s] INFO:colcon.colcon_core.shell:Creating package script '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/share/rosbags_to_csv/package.zsh'
+[8.604s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/share/colcon-core/packages/rosbags_to_csv)
+[8.604s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(rosbags_to_csv)
+[8.604s] Level 1:colcon.colcon_core.environment:checking '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv' for CMake module files
+[8.605s] Level 1:colcon.colcon_core.environment:checking '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv' for CMake config files
+[8.605s] Level 1:colcon.colcon_core.shell:create_environment_hook('rosbags_to_csv', 'cmake_prefix_path')
+[8.605s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/share/rosbags_to_csv/hook/cmake_prefix_path.ps1'
+[8.605s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/share/rosbags_to_csv/hook/cmake_prefix_path.dsv'
+[8.605s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/share/rosbags_to_csv/hook/cmake_prefix_path.sh'
+[8.605s] Level 1:colcon.colcon_core.environment:checking '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/lib'
+[8.606s] Level 1:colcon.colcon_core.environment:checking '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/bin'
+[8.606s] Level 1:colcon.colcon_core.environment:checking '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/lib/pkgconfig/rosbags_to_csv.pc'
+[8.606s] Level 1:colcon.colcon_core.environment:checking '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/lib/python3.8/site-packages'
+[8.606s] Level 1:colcon.colcon_core.environment:checking '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/bin'
+[8.606s] INFO:colcon.colcon_core.shell:Creating package script '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/share/rosbags_to_csv/package.ps1'
+[8.606s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/share/rosbags_to_csv/package.dsv'
+[8.606s] INFO:colcon.colcon_core.shell:Creating package script '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/share/rosbags_to_csv/package.sh'
+[8.607s] INFO:colcon.colcon_core.shell:Creating package script '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/share/rosbags_to_csv/package.bash'
+[8.607s] INFO:colcon.colcon_core.shell:Creating package script '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/share/rosbags_to_csv/package.zsh'
+[8.607s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/rosbags_to_csv/share/colcon-core/packages/rosbags_to_csv)
+[8.607s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[8.608s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[8.608s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[8.608s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[8.638s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.notify_send': Could not find 'notify-send'
+[8.638s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[8.638s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[8.638s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[8.639s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.Notifications was not provided by any .service files
+[8.639s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[8.639s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/local_setup.ps1'
+[8.640s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/_local_setup_util_ps1.py'
+[8.640s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/setup.ps1'
+[8.641s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/local_setup.sh'
+[8.641s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/_local_setup_util_sh.py'
+[8.641s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/setup.sh'
+[8.642s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/local_setup.bash'
+[8.642s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/setup.bash'
+[8.643s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/local_setup.zsh'
+[8.643s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/install/setup.zsh'

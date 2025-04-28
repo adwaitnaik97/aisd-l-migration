@@ -1,0 +1,4 @@
+source;share/rosbags_to_csv/local_setup.bash
+source;share/rosbags_to_csv/local_setup.dsv
+source;share/rosbags_to_csv/local_setup.sh
+source;share/rosbags_to_csv/local_setup.zsh
