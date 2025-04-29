@@ -1,0 +1,11 @@
+build
+install
+log
+
+src/rosbags_to_csv/bag_files/rosbag2_2025_04_24-10_45_07/*.swp
+src/rosbags_to_csv/bag_files/rosbag2_2025_04_24-10_45_07/*.db3-shm
+src/rosbags_to_csv/bag_files/rosbag2_2025_04_24-10_45_07/*.db3-wal
+
+src/*/build
+src/*/install
+src/*/log

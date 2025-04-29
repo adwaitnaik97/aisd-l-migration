@@ -1,6 +1,5 @@
 #include <MessagesHandler/messages_handler.hpp>
 #include <rosbags_to_csv.hpp>
-#include <sqlite3.h>
 
 std::vector<topicInfo> ROSBagsToCSV::readYAMLFile(const std::string &yamlFilePath)
 {
