@@ -72,6 +72,8 @@ struct topicInfo
 {
     std::string topicName;
     std::string topicType;
+    std::string serialization_format;
+    std::string offered_qos_profiles;
 };
 
 class ROSBagsToCSV
@@ -95,8 +97,6 @@ public:
     void readDB3File(const std::string &db3FilePath);
 
     void executeSQL(const std::string &db3FilePath);
-
-    // void getTopicList(const std::string &path);
 
     void createCheckBoxWidget(QDialog *dialog, const std::set<std::string> &topics);
 
