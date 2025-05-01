@@ -9,3 +9,5 @@ src/rosbags_to_csv/bag_files/rosbag2_2025_04_24-10_45_07/rosbag2_2025_04_24-10_4
 src/*/build
 src/*/install
 src/*/log
+
+*.sh

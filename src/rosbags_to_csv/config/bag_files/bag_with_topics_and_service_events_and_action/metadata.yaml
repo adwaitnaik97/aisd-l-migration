@@ -1,0 +1,138 @@
+---
+rosbag2_bagfile_information:
+  version: 9
+  storage_identifier: sqlite3
+  duration:
+    nanoseconds: 52559897611
+  starting_time:
+    nanoseconds_since_epoch: 1741949479681027429
+  message_count: 187
+  topics_with_message_count:
+    - topic_metadata:
+        name: /test_topic2
+        type: std_msgs/msg/String
+        serialization_format: cdr
+        offered_qos_profiles: >
+          - history: unknown
+          - depth: 0
+          - reliability: reliable
+          - durability: volatile
+          - deadline:
+              sec: 9223372036
+              nsec: 854775807
+          - lifespan:
+              sec: 9223372036
+              nsec: 854775807
+          - liveliness: automatic
+          - liveliness_lease_duration:
+              sec: 9223372036
+              nsec: 854775807
+          - avoid_ros_namespace_conventions: false
+        type_description_hash: >
+          RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18
+      message_count: 27
+    - topic_metadata:
+        name: /test_topic1
+        type: std_msgs/msg/String
+        serialization_format: cdr
+        offered_qos_profiles: >
+          - history: unknown
+          - depth: 0
+          - reliability: reliable
+          - durability: volatile
+          - deadline:
+              sec: 9223372036
+              nsec: 854775807
+          - lifespan:
+              sec: 9223372036
+              nsec: 854775807
+          - liveliness: automatic
+          - liveliness_lease_duration:
+              sec: 9223372036
+              nsec: 854775807
+          - avoid_ros_namespace_conventions: false
+        type_description_hash: >
+          RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18
+      message_count: 32
+    - topic_metadata:
+        name: /test_action1/_action/status
+        type: action_msgs/msg/GoalStatusArray
+        serialization_format: cdr
+        offered_qos_profiles: >
+          - history: unknown
+          - depth: 0
+          - reliability: reliable
+          - durability: transient_local
+          - deadline:
+              sec: 9223372036
+              nsec: 854775807
+          - lifespan:
+              sec: 9223372036
+              nsec: 854775807
+          - liveliness: automatic
+          - liveliness_lease_duration:
+              sec: 9223372036
+              nsec: 854775807
+          - avoid_ros_namespace_conventions: false
+        type_description_hash: >
+          RIHS01_6c1684b00f177d37438febe6e709fc4e2b0d4248dca4854946f9ed8b30cda83e
+      message_count: 2
+    - topic_metadata:
+        name: /test_action1/_action/feedback
+        type: example_interfaces/action/Fibonacci_FeedbackMessage
+        serialization_format: cdr
+        offered_qos_profiles: >
+          - history: unknown
+          - depth: 0
+          - reliability: reliable
+          - durability: volatile
+          - deadline:
+              sec: 9223372036
+              nsec: 854775807
+          - lifespan:
+              sec: 9223372036
+              nsec: 854775807
+          - liveliness: automatic
+          - liveliness_lease_duration:
+              sec: 9223372036
+              nsec: 854775807
+          - avoid_ros_namespace_conventions: false
+        type_description_hash: >
+          RIHS01_c1de71afd52e49a89c53d8262366884185bc0a02f78ce051c4e46b0a7fe59bb2
+      message_count: 5
+    - topic_metadata:
+        name: /events/write_split
+        type: rosbag2_interfaces/msg/WriteSplitEvent
+        serialization_format: cdr
+        offered_qos_profiles: >
+          - history: unknown
+          - depth: 0
+          - reliability: reliable
+          - durability: volatile
+          - deadline:
+              sec: 9223372036
+              nsec: 854775807
+          - lifespan:
+              sec: 9223372036
+              nsec: 854775807
+          - liveliness: automatic
+          - liveliness_lease_duration:
+              sec: 9223372036
+              nsec: 854775807
+          - avoid_ros_namespace_conventions: false
+        type_description_hash: >
+          RIHS01_4a50733d58c48fe31919ae8c8516beda7326d70c8e99aee98af3fdfd44ec5ae6
+      message_count: 0
+  compression_format: ""
+  compression_mode: ""
+  relative_file_paths:
+    - bag_with_topics_and_service_events_and_action.db3
+  files:
+    - path: bag_with_topics_and_service_events_and_action.db3
+      starting_time:
+        nanoseconds_since_epoch: 1741949479681027429
+      duration:
+        nanoseconds: 52559897611
+      message_count: 187
+  custom_data: ~
+  ros_distro: rolling

@@ -105,79 +105,105 @@ void ROSBagsToCSV::executeSQL(const std::string &db3FilePath)
     }
     std::cout << "Successfully opened database: " << db3FilePath << std::endl;
 
-    // SQL query to retrieve data from the topics table
-    const char *sql = "SELECT id, name, type, serialization_format, offered_qos_profiles FROM topics;";
-
-    // Callback function to process query results
-    auto callback = [](void *notUsed, int argc, char **argv, char **colNames) -> int
+    // Helper function to execute SQL queries and write results to CSV
+    auto executeAndWriteToCSV = [&](const char *query, const std::string &tableName)
     {
-        (void)notUsed; // Suppress unused variable warning
-        for (int i = 0; i < argc; i++)
+        std::cout << "Querying table: " << tableName << std::endl;
+
+        // Data container for rows
+        std::vector<std::vector<std::string>> data;
+        std::vector<std::string> headers;
+
+        // Callback function to collect query results
+        auto callback = [](void *dataPtr, int argc, char **argv, char **colNames) -> int
         {
-            std::cout << colNames[i] << ": " << (argv[i] ? argv[i] : "NULL") << std::endl;
+            auto *data = static_cast<std::vector<std::vector<std::string>> *>(dataPtr);
+
+            // Add column names as headers if not already added
+            if (data->empty())
+            {
+                std::vector<std::string> headers;
+                for (int i = 0; i < argc; ++i)
+                {
+                    headers.push_back(colNames[i]);
+                }
+                data->push_back(headers);
+            }
+
+            // Add row data
+            std::vector<std::string> row;
+            for (int i = 0; i < argc; ++i)
+            {
+                row.push_back(argv[i] ? argv[i] : "NULL");
+            }
+            data->push_back(row);
+
+            return 0;
+        };
+
+        // Execute the query
+        int rc = sqlite3_exec(db, query, callback, &data, &errMsg);
+        if (rc != SQLITE_OK)
+        {
+            std::cerr << "SQL error in table " << tableName << ": " << errMsg << std::endl;
+            sqlite3_free(errMsg);
+            return;
         }
-        std::cout << "----------------------------------------" << std::endl;
-        return 0;
+
+        // Write data to CSV
+        std::string csvDirectory = "/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/config/csv/";
+        std::string csvFilePath = csvDirectory + tableName + ".csv";
+        std::ofstream csvFile(csvFilePath);
+        if (!csvFile.is_open())
+        {
+            std::cerr << "Error: Could not open CSV file for writing: " << csvFilePath << std::endl;
+            return;
+        }
+
+        // Write headers
+        if (!data.empty())
+        {
+            headers = data.front();
+            for (size_t i = 0; i < headers.size(); ++i)
+            {
+                csvFile << headers[i];
+                if (i < headers.size() - 1)
+                {
+                    csvFile << ",";
+                }
+            }
+            csvFile << "\n";
+
+            // Write rows
+            for (size_t i = 1; i < data.size(); ++i)
+            {
+                const auto &row = data[i];
+                for (size_t j = 0; j < row.size(); ++j)
+                {
+                    csvFile << row[j];
+                    if (j < row.size() - 1)
+                    {
+                        csvFile << ",";
+                    }
+                }
+                csvFile << "\n";
+            }
+        }
+
+        csvFile.close();
+        std::cout << "Data successfully written to CSV file: " << csvFilePath << std::endl;
     };
 
-    // Execute the SQL query
-    rc = sqlite3_exec(db, sql, callback, nullptr, &errMsg);
-    if (rc != SQLITE_OK)
-    {
-        std::cerr << "SQL error: " << errMsg << std::endl;
-        sqlite3_free(errMsg);
-    }
+    // Execute queries and write results to CSV files
+    executeAndWriteToCSV("SELECT * FROM 'message_definitions' LIMIT 0,30", "message_definitions");
+    executeAndWriteToCSV("SELECT * FROM 'messages' LIMIT 0,30", "messages");
+    executeAndWriteToCSV("SELECT * FROM 'metadata' LIMIT 0,30", "metadata");
+    executeAndWriteToCSV("SELECT * FROM 'schema' LIMIT 0,30", "schema");
+    executeAndWriteToCSV("SELECT * FROM 'topics' LIMIT 0,30", "topics");
 
     // Close the database
     sqlite3_close(db);
 }
-
-// void ROSBagsToCSV::readDB3File(const std::string &db3FilePath)
-// {
-//     // Create a reader instance
-//     std::unique_ptr<rosbag2_cpp::Reader> reader = std::make_unique<rosbag2_cpp::Reader>();
-
-//     try
-//     {
-//         rosbag2_storage::StorageOptions storage_options;
-//         storage_options.uri = db3FilePath;
-//         storage_options.storage_id = "sqlite3"; // Use SQLite3 as the storage format
-
-//         // Open the bag file
-//         reader->open(storage_options, rosbag2_cpp::ConverterOptions());
-//         std::cout << "Successfully opened bag file: " << db3FilePath << std::endl;
-//     }
-
-//     catch (const std::exception &e)
-//     {
-//         std::cerr << "Failed to open bag: " << e.what() << std::endl;
-//         return;
-//     }
-
-//     // Get the list of topics
-//     auto topic_metadata = reader->get_all_topics_and_types();
-//     if (topic_metadata.empty())
-//     {
-//         std::cerr << "No topics found in the bag file." << std::endl;
-//         return;
-//     }
-//     // Print the list of topics
-//     std::cout << "Topics in the bag file:" << std::endl;
-//     int id = 1; // Assign a unique ID for each topic
-//     for (const auto &topic : topic_metadata)
-//     {
-//         std::cout << "ID: " << id << std::endl;
-//         std::cout << "Name: " << topic.name << std::endl;
-//         std::cout << "Type: " << topic.type << std::endl;
-//         std::cout << "Serialization Format: " << topic.serialization_format << std::endl;
-//         std::cout << "Offered QoS Profiles: " << topic.offered_qos_profiles << std::endl;
-//         std::cout << "----------------------------------------" << std::endl;
-//         id++;
-//     }
-
-//     // Execute SQL query to print topics table
-//     // executeSQL(db3FilePath);
-// }
 
 // void ROSBagsToCSV::createCheckBoxWidget(QDialog *dialog, const std::set<std::string> &topics)
 // {
@@ -340,27 +366,27 @@ int main(int argc, char **argv)
     auto node = rclcpp::Node::make_shared("rosbags_to_csv_node");
 
     // Declare parameters for metadata and db3 file paths
-    node->declare_parameter<std::string>("metadata_file_path", "");
+    // node->declare_parameter<std::string>("metadata_file_path", "");
     node->declare_parameter<std::string>("db3_file_path", "");
 
-    // // Get the metadata file path parameter
-    std::string metadata_file_path;
-    if (!node->get_parameter("metadata_file_path", metadata_file_path) || metadata_file_path.empty())
-    {
-        RCLCPP_ERROR(node->get_logger(), "Parameter 'metadata_file_path' is not set or empty. Exiting...");
-        return 1;
-    }
+    // // // Get the metadata file path parameter
+    // std::string metadata_file_path;
+    // if (!node->get_parameter("metadata_file_path", metadata_file_path) || metadata_file_path.empty())
+    // {
+    //     RCLCPP_ERROR(node->get_logger(), "Parameter 'metadata_file_path' is not set or empty. Exiting...");
+    //     return 1;
+    // }
 
-    RCLCPP_INFO(node->get_logger(), "Using metadata file path: %s", metadata_file_path.c_str());
+    // RCLCPP_INFO(node->get_logger(), "Using metadata file path: %s", metadata_file_path.c_str());
 
-    // // Create an instance of ROSBagsToCSV and process the YAML file
+    // // // Create an instance of ROSBagsToCSV and process the YAML file
     ROSBagsToCSV rosbagsToCSV(node);
-    auto topics = rosbagsToCSV.readYAMLFile(metadata_file_path);
+    // auto topics = rosbagsToCSV.readYAMLFile(metadata_file_path);
 
-    if (topics.empty())
-    {
-        RCLCPP_WARN(node->get_logger(), "No topics found in the metadata file.");
-    }
+    // if (topics.empty())
+    // {
+    //     RCLCPP_WARN(node->get_logger(), "No topics found in the metadata file.");
+    // }
 
     // Get the db3 file path parameter
     std::string db3_file_path;

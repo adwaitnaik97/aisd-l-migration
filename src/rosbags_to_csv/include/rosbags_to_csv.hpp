@@ -94,11 +94,9 @@ public:
 
     std::vector<topicInfo> readYAMLFile(const std::string &yamlFilePath);
 
-    void readDB3File(const std::string &db3FilePath);
-
     void executeSQL(const std::string &db3FilePath);
 
-    void createCheckBoxWidget(QDialog *dialog, const std::set<std::string> &topics);
+    //void createCheckBoxWidget(QDialog *dialog, const std::set<std::string> &topics);
 
 private:
     // std::set<std::string> topics;
