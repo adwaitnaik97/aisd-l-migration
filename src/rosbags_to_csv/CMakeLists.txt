@@ -23,6 +23,11 @@ find_package(rosbag2_transport REQUIRED)
 find_package(Qt5 REQUIRED COMPONENTS Widgets)
 find_package(SQLite3 REQUIRED)
 
+# Enable Qt MOC and UI processing
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
 # Include directories
 include_directories(
   ${Qt5Widgets_INCLUDE_DIRS}
@@ -33,7 +38,7 @@ include_directories(
 # Add the executable
 add_executable(rosbags_to_csv src/rosbags_to_csv.cpp)
 
-# Link dependencies for the executable
+# Link dependencies
 ament_target_dependencies(rosbags_to_csv
   rclcpp
   std_msgs
@@ -50,11 +55,5 @@ target_link_libraries(rosbags_to_csv Qt5::Widgets SQLite::SQLite3)
 install(TARGETS rosbags_to_csv
   DESTINATION lib/${PROJECT_NAME}
 )
-
-# # Enable testing
-# if(BUILD_TESTING)
-#   find_package(ament_lint_auto REQUIRED)
-#   ament_lint_auto_find_test_dependencies()
-# endif()
 
 ament_package()

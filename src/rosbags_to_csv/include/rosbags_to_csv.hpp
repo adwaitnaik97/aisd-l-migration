@@ -57,6 +57,10 @@
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QTableWidget>
+#include <QtWidgets/QTableWidgetItem>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QGroupBox>
 
 // #define foreach BOOST_FOREACH
 
@@ -96,7 +100,9 @@ public:
 
     void executeSQL(const std::string &db3FilePath);
 
-    //void createCheckBoxWidget(QDialog *dialog, const std::set<std::string> &topics);
+    void viewTopicInfo(QDialog *dialog, const std::vector<topicInfo> &topics);
+
+    // void createCheckBoxWidget(QDialog *dialog, const std::set<std::string> &topics);
 
 private:
     // std::set<std::string> topics;

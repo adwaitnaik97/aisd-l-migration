@@ -9,6 +9,7 @@
  * Copyright (C) 2025 AIOS @ AIDRIVERS Ltd - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
+ *
  * author(s) = 'Mahmoud Alsayed','Adwait Naik'
  * email  = 'Mahmoud@aidrivers.ai', 'adwait@aidrivers.ai'
  *******************************************************/
@@ -151,7 +152,7 @@ void ROSBagsToCSV::executeSQL(const std::string &db3FilePath)
         }
 
         // Write data to CSV
-        std::string csvDirectory = "/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/config/csv/";
+        std::string csvDirectory = "/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/config/csv_files/";
         std::string csvFilePath = csvDirectory + tableName + ".csv";
         std::ofstream csvFile(csvFilePath);
         if (!csvFile.is_open())
@@ -205,207 +206,79 @@ void ROSBagsToCSV::executeSQL(const std::string &db3FilePath)
     sqlite3_close(db);
 }
 
-// void ROSBagsToCSV::createCheckBoxWidget(QDialog *dialog, const std::set<std::string> &topics)
-// {
-//     QVBoxLayout *layout = new QVBoxLayout(dialog);
-//     QCheckBox *checkBox;
-//     for (const auto &topic : topics)
-//     {
-//         checkBox = new QCheckBox(QString::fromStdString(topic));
-//         checkBoxList.push_back(checkBox);
-//         layout->addWidget(checkBox);
-//     }
+void ROSBagsToCSV::viewTopicInfo(QDialog *dialog, const std::vector<topicInfo> &topics)
+{
+    QVBoxLayout *layout = new QVBoxLayout(dialog);
 
-//     QScrollArea *scrollArea = new QScrollArea(dialog);
-//     QWidget *scrollWidget = new QWidget(scrollArea);
-//     scrollWidget->setLayout(layout);
-//     scrollArea->setWidget(scrollWidget);
-//     scrollArea->setWidgetResizable(true);
+    QLabel *instruction = new QLabel("Select topics to view details:", dialog);
+    layout->addWidget(instruction);
 
-//     dialog->setLayout(new QVBoxLayout(dialog));
-//     dialog->layout()->addWidget(scrollArea);
-//     QPushButton *captureButton = new QPushButton("select");
-//     dialog->layout()->addWidget(captureButton);
+    for (const auto &info : topics)
+    {
+        // Create checkbox
+        QCheckBox *checkbox = new QCheckBox(QString::fromStdString(info.topicName), dialog);
+        layout->addWidget(checkbox);
 
-//     QObject::connect(captureButton, &QPushButton::clicked, [&]()
-//                      {
-//                          qDebug() << "Selected checkboxes:";
-//                          for (QCheckBox *Box : checkBoxList)
-//                          {
-//                              if (Box->isChecked())
-//                              {
-//                                  topicsList.push_back((Box->text()).toStdString());
-//                                  std::string path_name = filePath.toStdString() + std::string(".csv");
+        // Create a group box to show details (initially hidden)
+        QGroupBox *detailsBox = new QGroupBox("Details", dialog);
+        QVBoxLayout *detailsLayout = new QVBoxLayout(detailsBox);
 
-//                                  // Configure storage options
-//                                  rosbag2_storage::StorageOptions storage_options;
-//                                  storage_options.uri = filePath.toStdString();
-//                                  storage_options.storage_id = "sqlite3"; // Use SQLite3 as the storage format
+        detailsLayout->addWidget(new QLabel("Type: " + QString::fromStdString(info.topicType)));
+        detailsLayout->addWidget(new QLabel("Serialization Format: " + QString::fromStdString(info.serialization_format)));
+        detailsLayout->addWidget(new QLabel("QoS Profiles: " + QString::fromStdString(info.offered_qos_profiles)));
 
-//                                  // Configure converter options
-//                                  rosbag2_cpp::ConverterOptions converter_options;
-//                                  converter_options.input_serialization_format = "cdr";
-//                                  converter_options.output_serialization_format = "cdr";
+        detailsBox->setVisible(false);
+        layout->addWidget(detailsBox);
 
-//                                  std::unique_ptr<rosbag2_cpp::Reader> reader = std::make_unique<rosbag2_cpp::Reader>();
+        // Connect checkbox toggle to show/hide detail box
+        QObject::connect(checkbox, &QCheckBox::toggled, detailsBox, &QGroupBox::setVisible);
+    }
 
-//                                  try
-//                                  {
-//                                      reader->open(storage_options, rosbag2_cpp::ConverterOptions());
-//                                      std::cout << "Successfully opened bag file: " << filePath.toStdString() << std::endl;
+    QPushButton *closeButton = new QPushButton("Close", dialog);
+    QObject::connect(closeButton, &QPushButton::clicked, dialog, &QDialog::accept);
+    layout->addWidget(closeButton);
 
-//                                     //  // Iterate through messages in the bag file
-//                                     //  while (reader->has_next())
-//                                     //  {
-//                                     //      auto bag_message = reader->read_next();
-//                                     //      const std::string &topic_name = bag_message->topic_name;
+    QPixmap logoPixmap("/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/config/logo/aidriversltd_logo.jpg"); // Update with your actual path
+    QLabel *logoLabel = new QLabel(dialog);
+    logoLabel->setPixmap(logoPixmap.scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    logoLabel->setAlignment(Qt::AlignCenter);
+    layout->addWidget(logoLabel);
 
-//                                     //      // Filter messages by topics in topicsList
-//                                     //      if (std::find(topicsList.begin(), topicsList.end(), topic_name) != topicsList.end())
-//                                     //      {
-//                                     //          std::cout << "Topic: " << topic_name << std::endl;
-//                                     //          std::cout << "Message: " << bag_message->serialized_data->buffer_length << " bytes" << std::endl;
-//                                     //      }
-//                                     //  }
-
-//                                     // Get all topics and their metadata
-//                                     auto topics_metadata = reader->get_all_topics_and_types();
-
-//                                     // Iterate through the topics and register message definitions
-//                                     for (const auto &topic_metadata : topics_metadata)
-//                                     {
-//                                         const std::string &topic_name = topic_metadata.name;
-//                                         const std::string &datatype = topic_metadata.type;
-//                                         const std::string &serialization_format = topic_metadata.serialization_format;
-
-//                                         // Register the type using the topic_name as an identifier
-//                                         std::string definition = ""; // ROS 2 does not provide message definitions in the bag file
-//                                         //parser.registerMessageDefinition(topic_name, RosIntrospection::ROSType(datatype), definition);
-
-//                                         std::cout << "Registered topic: " << topic_name << std::endl;
-//                                         std::cout << "  Datatype: " << datatype << std::endl;
-//                                         std::cout << "  Serialization Format: " << serialization_format << std::endl;
-//                                     }
-//                                  }
-//                                  catch (const std::exception &e)
-//                                  {
-//                                     std::cerr << "Error reading bag file: " << e.what() << std::endl;
-//                                  }
-
-//                                 // todo:: RosIntrospection::Parser parser;
-//                             //     for (const rosbag::ConnectionInfo* connection : bag_view.getConnections()) {
-//                             //         const std::string& topic_name = connection->topic;
-//                             //         const std::string& datatype = connection->datatype;
-//                             //         const std::string& definition = connection->msg_def;
-//                             //         // register the type using the topic_name as identifier.
-//                             //         parser.registerMessageDefinition(topic_name, RosIntrospection::ROSType(datatype),
-//                             //                                          definition);
-//                             //       }
-//                             //       std::map<std::string, RosIntrospection::FlatMessage> flat_containers;
-//                             //       std::map<std::string, RosIntrospection::RenamedValues> renamed_vectors;
-//                             //       std::vector<uint8_t> buffer;
-//                             //       for (rosbag::MessageInstance msg_instance : bag_view) {
-//                             //         const std::string& topic_name = msg_instance.getTopic();
-//                             //         const size_t msg_size = msg_instance.size();
-//                             //         buffer.resize(msg_size);
-//                             //         ros::serialization::OStream stream(buffer.data(), buffer.size());
-//                             //         msg_instance.write(stream);
-
-//                             //         RosIntrospection::FlatMessage& flat_container = flat_containers[topic_name];
-//                             //         RosIntrospection::RenamedValues& renamed_values = renamed_vectors[topic_name];
-//                             //         parser.deserializeIntoFlatContainer(topic_name, RosIntrospection::Span<uint8_t>(buffer),
-//                             //                                             &flat_container, 100);
-
-//                             //         parser.applyNameTransform(topic_name, flat_container, &renamed_values);
-//                             //         printf("--------- %s ----------\n", topic_name.c_str());
-//                             //         std::string bool_value;
-//                             //         for (auto it : renamed_values) {
-//                             //           const std::string& key = it.first;
-//                             //           const RosIntrospection::Variant& value = it.second;
-//                             //           // printf(" %s = %f\n", key.c_str(), value.convert<std::string>() );
-//                             //           file << key.c_str() << ": ";
-//                             //           if(value.convert<double>() == 0){
-//                             //             bool_value = "False";
-//                             //           }
-//                             //           else if(value.convert<double>() == 1){
-//                             //              bool_value = "True";
-//                             //           }
-//                             //           file << bool_value<< ", ";
-//                             //         }
-//                             //          file <<"\n";
-//                             //         for (auto it : flat_container.name) {
-//                             //           const std::string& key = it.first.toStdString();
-//                             //           const std::string& value = it.second;
-//                             //           printf(" %s = %s\n", key.c_str(), value.c_str());
-//                             //           if(!value.empty()){
-//                             //             file << value.c_str() << "\n";
-//                             //           }
-//                             //         }
-//                             //       }
-//                             //       file.close();
-//                             //     }
-//                             //   }
-//                             //   dialog->close();
-//                                 // Check if the csv file opened successfully
-//                                 std::ofstream csvFile(path_name);
-//                                 if (!csvFile.is_open())
-//                                 {
-//                                     std::cerr << "Error opening CSV file: " << path_name << std::endl;
-//                                     return;
-//                                 }
-//                              }
-//                          } });
-// }
+    // === Add Instructions ===
+    dialog->setLayout(layout);
+    dialog->setWindowTitle("Topic Information Viewer");
+    dialog->resize(600, 500);
+    dialog->exec();
+}
 
 int main(int argc, char **argv)
 {
-    // Initialize ROS 2
     rclcpp::init(argc, argv);
-
-    // Create a node
     auto node = rclcpp::Node::make_shared("rosbags_to_csv_node");
 
-    // Declare parameters for metadata and db3 file paths
-    // node->declare_parameter<std::string>("metadata_file_path", "");
+    node->declare_parameter<std::string>("metadata_file_path", "");
     node->declare_parameter<std::string>("db3_file_path", "");
 
-    // // // Get the metadata file path parameter
-    // std::string metadata_file_path;
-    // if (!node->get_parameter("metadata_file_path", metadata_file_path) || metadata_file_path.empty())
-    // {
-    //     RCLCPP_ERROR(node->get_logger(), "Parameter 'metadata_file_path' is not set or empty. Exiting...");
-    //     return 1;
-    // }
+    std::string metadata_file_path;
+    node->get_parameter("metadata_file_path", metadata_file_path);
 
-    // RCLCPP_INFO(node->get_logger(), "Using metadata file path: %s", metadata_file_path.c_str());
-
-    // // // Create an instance of ROSBagsToCSV and process the YAML file
-    ROSBagsToCSV rosbagsToCSV(node);
-    // auto topics = rosbagsToCSV.readYAMLFile(metadata_file_path);
-
-    // if (topics.empty())
-    // {
-    //     RCLCPP_WARN(node->get_logger(), "No topics found in the metadata file.");
-    // }
-
-    // Get the db3 file path parameter
     std::string db3_file_path;
-    if (!node->get_parameter("db3_file_path", db3_file_path) || db3_file_path.empty())
-    {
-        RCLCPP_ERROR(node->get_logger(), "Parameter 'db3_file_path' is not set or empty. Exiting...");
-        return 1;
-    }
+    node->get_parameter("db3_file_path", db3_file_path);
 
-    RCLCPP_INFO(node->get_logger(), "Using db3 file path: %s", db3_file_path.c_str());
-
-    // Read the db3 file
-    // rosbagsToCSV.readDB3File(db3_file_path);
+    ROSBagsToCSV rosbagsToCSV(node);
+    auto topics = rosbagsToCSV.readYAMLFile(metadata_file_path);
     rosbagsToCSV.executeSQL(db3_file_path);
 
-    // Spin the node
-    rclcpp::spin(node);
+    // Spin ROS 2 in a separate thread
+    std::thread spin_thread([&]()
+                            { rclcpp::spin(node); });
 
-    // Shutdown ROS 2
+    QApplication app(argc, argv);
+    QDialog dialog;
+    rosbagsToCSV.viewTopicInfo(&dialog, topics);
+
     rclcpp::shutdown();
+    spin_thread.join();
+
     return 0;
 }

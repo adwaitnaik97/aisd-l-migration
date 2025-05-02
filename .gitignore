@@ -2,9 +2,12 @@ build
 install
 log
 
-src/rosbags_to_csv/bag_files/rosbag2_2025_04_24-10_45_07/.metadata.yaml.swp
-src/rosbags_to_csv/bag_files/rosbag2_2025_04_24-10_45_07/rosbag2_2025_04_24-10_45_07.db3-shm
-src/rosbags_to_csv/bag_files/rosbag2_2025_04_24-10_45_07/rosbag2_2025_04_24-10_45_07.db3-wal
+
+src/rosbags_to_csv/config/bag_files/rosbag2_2025_04_24-10_45_07/.metadata.yaml.swp
+src/rosbags_to_csv/config/bag_files/rosbag2_2025_04_24-10_45_07/rosbag2_2025_04_24-10_45_07.db3-shm
+src/rosbags_to_csv/config/bag_files/rosbag2_2025_04_24-10_45_07/rosbag2_2025_04_24-10_45_07.db3-wal
+
+/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbags_to_csv/config/csv_files/*
 
 src/*/build
 src/*/install
