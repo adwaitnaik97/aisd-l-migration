@@ -79,5 +79,7 @@
         "typeinfo": "cpp",
         "valarray": "cpp",
         "variant": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "/home/adwait/workspace/ros2_packages/aisd-l-migration/src/rosbag_logger",
+    "C_Cpp.errorSquiggles": "disabled"
 }

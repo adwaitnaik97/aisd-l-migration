@@ -8,6 +8,8 @@
                 "/usr/include/**",
                 "/opt/ros/galactic/include/**",
                 "${workspaceFolder}/src/rosbags_to_csv/include",
+                "${workspaceFolder}/src/rosbag_logger/include",
+                "${workspaceFolder}/src/rosbag_logger/msg/**",
                 "/usr/include/rapidjson",
                 " /usr/local/include/fastcdr"            
             ],

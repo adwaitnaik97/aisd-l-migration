@@ -1,0 +1,7 @@
+std_msgs/Header header
+string encryption_status
+bool recording_status
+string active_bagfile
+string message
+int32 health
+rosbag_logger_interfaces/InfoMessage info

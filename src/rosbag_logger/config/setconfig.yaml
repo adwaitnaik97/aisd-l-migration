@@ -1,0 +1,10 @@
+rosbag_logger:
+    auto_deletion: false
+
+rosbag_config:
+    exception_threshold_time: 10.0
+    exception_start_time: 5
+    exception_end_time: 5
+    disk_space_threshold: 100
+    folder_size_threshold: 100
+    

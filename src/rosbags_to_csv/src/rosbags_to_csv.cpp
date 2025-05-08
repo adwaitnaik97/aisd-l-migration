@@ -10,8 +10,8 @@
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  *
- * author(s) = 'Mahmoud Alsayed','Adwait Naik'
- * email  = 'Mahmoud@aidrivers.ai', 'adwait@aidrivers.ai'
+ * author(s) = 'Adwait Naik'
+ * email  = 'adwait@aidrivers.ai'
  *******************************************************/
 
 #include <MessagesHandler/messages_handler.hpp>

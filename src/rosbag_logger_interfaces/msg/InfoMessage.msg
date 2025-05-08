@@ -1,0 +1,3 @@
+int32 active_topics
+int32 inactive_topics
+float64 file_size
