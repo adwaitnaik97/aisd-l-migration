@@ -316,7 +316,8 @@ void ROSBagLogger::loadTopics(const std::string &file_path)
     file.close();
 }
 
-bool ROSBagLogger::isTopicAvailable(const std::string &topic) {
+bool ROSBagLogger::isTopicAvailable(const std::string &topic)
+{
     auto topics = this->get_topic_names_and_types();
     return topics.find(topic) != topics.end();
 }
@@ -349,6 +350,35 @@ void ROSBagLogger::validateTopics(const std::string &log_file)
         csv_file.close();
     }
     check_topics_availability = false;
+}
+
+void ROSBagLogger::monitorDiskSpaceAndFolder()
+{
+    struct statvfs stat;
+    if (statvfs("/", &stat) != 0)
+    {
+        RCLCPP_ERROR(this->get_logger(), "Failed to get disk space statistics");
+        return;
+    }
+
+    uinit64_t free_space = stat.f_bavail * stat.f_frsize;
+    if (free_space < disk_space_threshold)
+    {
+        RCLCPP_WARN(this->get_logger(), "Low disk space: %lu bytes available", free_space);
+    }
+
+    double folder_size = std::stod(getFolderSizeInGB(output_dir));
+
+    rosbag_logger_msg.info.file_size = folder_size;
+
+    if (folder_size >= folder_size_threshold)
+    {
+        space_available = false;
+    }
+    else
+    {
+        space_available = true
+    }
 }
 
 int main(int argc, char *argv[])
