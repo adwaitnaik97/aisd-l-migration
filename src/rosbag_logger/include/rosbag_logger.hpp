@@ -21,6 +21,7 @@
 #include <rclcpp/rclcpp.hpp>
 #include <rclcpp/time.hpp>
 #include <rosbag2_cpp/writer.hpp>
+#include <rosbag2_cpp/info_reader.hpp>
 #include <rosbag2_cpp/storage_options.hpp>
 
 #include <std_msgs/msg/bool.hpp>

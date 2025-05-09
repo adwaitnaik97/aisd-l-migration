@@ -26,66 +26,66 @@ ROSBagLogger::ROSBagLogger() : Node("rosbag_logger")
     //         "/stop_recording", 10,
     //         std::bind(&ROSBagLogger::stopRecordingCallback, this, std::placeholders::_1));
 
-    //     auto add_exception_sub = this->create_subscription<std_msgs::msg::Float32>(
-    //         "/aios/connect_triggered", 10,
-    //         std::bind(&ROSBagLogger::exceptionCallback, this, std::placeholders::_1));
+        auto add_exception_sub = this->create_subscription<std_msgs::msg::Float32>(
+            "/aios/connect_triggered", 10,
+            std::bind(&ROSBagLogger::exceptionCallback, this, std::placeholders::_1));
 
-    //     auto rosbag_logger_pub = this->create_publisher<rosbag_logger_interfaces::msg::RosbagLogger>(
-    //         "/aisd/rosbag_managment/info", 10);
+        auto rosbag_logger_pub = this->create_publisher<rosbag_logger_interfaces::msg::RosbagLogger>(
+            "/aisd/rosbag_managment/info", 10);
 
-    //     this->declare_parameter<std::string>("topic_list_file", "Empty");
-    //     this->declare_parameter<std::string>("max_rosbag_size", "0");
-    //     this->declare_parameter<std::string>("output_dir", "Empty");
+        this->declare_parameter<std::string>("topic_list_file", "Empty");
+        this->declare_parameter<std::string>("max_rosbag_size", "0");
+        this->declare_parameter<std::string>("output_dir", "Empty");
 
-    //     this->get_parameter("/aios_config/scenario_id", scenario_id);
-    //     this->get_parameter("/record_sensors/output_prefix", output_prefix);
-    //     this->get_parameter("/rosbag_config/activate_exception", activate_exception);
-    //     this->get_parameter("/rosbag_config/exception_threshold_time", exception_threshold_time);
-    //     this->get_parameter("/rosbag_config/exception_start_time", exception_start_time);
-    //     this->get_parameter("/rosbag_config/exception_end_time", exception_end_time);
-    //     this->get_parameter("/rosbag_config/disk_space_threshold", disk_space_threshold);
-    //     this->get_parameter("/rosbag_config/folder_size_threshold", folder_size_threshold);
-    //     this->get_parameter("/rosbag_logger/auto_deletion", auto_deletion);
+        this->get_parameter("/aios_config/scenario_id", scenario_id);
+        this->get_parameter("/record_sensors/output_prefix", output_prefix);
+        this->get_parameter("/rosbag_config/activate_exception", activate_exception);
+        this->get_parameter("/rosbag_config/exception_threshold_time", exception_threshold_time);
+        this->get_parameter("/rosbag_config/exception_start_time", exception_start_time);
+        this->get_parameter("/rosbag_config/exception_end_time", exception_end_time);
+        this->get_parameter("/rosbag_config/disk_space_threshold", disk_space_threshold);
+        this->get_parameter("/rosbag_config/folder_size_threshold", folder_size_threshold);
+        this->get_parameter("/rosbag_logger/auto_deletion", auto_deletion);
 
-    //     loadTopics(topic_list_file);
+        loadTopics(topic_list_file);
 
-    //     time_format = getTimeFormat("Time");
+        time_format = getTimeFormat("Time");
 
-    //     date_format = getTimeFormat("Date");
+        date_format = getTimeFormat("Date");
 
-    //     session_start_time = "";
+        session_start_time = "";
 
-    //     session_end_time = "";
+        session_end_time = "";
 
-    //     exception_start_time_ = "";
+        exception_start_time_ = "";
 
-    //     folder_path_str = output_dir + "/" + date_format;
+        folder_path_str = output_dir + "/" + date_format;
 
-    //     topics_csv_str = output_dir + "/" + date_format + "/" + scenario_id + "_" + time_format + "_logger.csv";
+        topics_csv_str = output_dir + "/" + date_format + "/" + scenario_id + "_" + time_format + "_logger.csv";
 
-    //     session_info_csv = output_dir + "/" + date_format + "/" + scenario_id + "_" + time_format + "_session_info.csv";
+        session_info_csv = output_dir + "/" + date_format + "/" + scenario_id + "_" + time_format + "_session_info.csv";
 
-    //     deleted_file_path = output_dir + "/" + date_format + "/" + scenario_id + "_" + time_format + "_deleted_bags.csv";
+        deleted_file_path = output_dir + "/" + date_format + "/" + scenario_id + "_" + time_format + "_deleted_bags.csv";
 
-    //     start_time = rclcpp::Time(0);
+        start_time = rclcpp::Time(0);
 
-    //     end_time = rclcpp::Time(0);
+        end_time = rclcpp::Time(0);
 
-    //     start_recording = rclcpp::Time(0);
+        start_recording = rclcpp::Time(0);
 
-    //     exception_index = rclcpp::Time(0);
+        exception_index = rclcpp::Time(0);
 
-    //     createFolderForBagFiles(folder_path_str);
+        createFolderForBagFiles(folder_path_str);
 
-    //     createSessionCSV(session_info_csv);
+        createSessionCSV(session_info_csv);
 
-    //     if (activate_exception)
-    //     {
-    //         std::thread copy_thread([this]()
-    //                                 { this->manageBagFiles(); });
+        // if (activate_exception)
+        // {
+        //     std::thread copy_thread([this]()
+        //                             { this->manageBagFiles(); });
 
-    //         copy_thread.detach();
-    //     }
+        //     copy_thread.detach();
+        // }
 }
 
 void ROSBagLogger::createFolderForBagFiles(const std::string &folder_path)
@@ -361,7 +361,7 @@ void ROSBagLogger::monitorDiskSpaceAndFolder()
         return;
     }
 
-    uinit64_t free_space = stat.f_bavail * stat.f_frsize;
+    uint64_t free_space = stat.f_bavail * stat.f_frsize;
     if (free_space < disk_space_threshold)
     {
         RCLCPP_WARN(this->get_logger(), "Low disk space: %lu bytes available", free_space);
@@ -377,8 +377,55 @@ void ROSBagLogger::monitorDiskSpaceAndFolder()
     }
     else
     {
-        space_available = true
+        space_available = true;
     }
+}
+
+std::string ROSBagLogger::getFolderSizeInGB(const std::string &folder_path)
+{
+    uint64_t total_size = 0;
+
+    try
+    {
+        for (const auto &entry : fs::recursive_directory_iterator(folder_path))
+        {
+            if (fs::is_regular_file(entry.status()))
+            {
+                total_size += fs::file_size(entry.path());
+            }
+        }
+    }
+    catch (const fs::filesystem_error &e)
+    {
+        std::cerr << "Filesystem error: " << e.what() << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "General exception: " << e.what() << std::endl;
+    }
+
+    double total_size_gb = static_cast<double>(total_size) / (1024.0 * 1024.0 * 1024.0);
+    std::stringstream ss;
+    ss << std::fixed << std::setprecision(1) << total_size_gb;
+    return ss.str();
+}
+
+ROSBagLogger::TimeRange ROSBagLogger::getBagFileTimeRange(const std::string& bag_file_path) {
+    rosbag2_cpp::InfoReader info_reader;
+    rosbag2_storage::StorageOptions storage_options;
+    storage_options.uri = bag_file_path;
+    storage_options.storage_id = "sqlite3";
+
+    auto metadata = info_reader.read_metadata(storage_options.uri);
+
+    rclcpp::Time start_time(metadata.starting_time.time_since_epoch().count());
+    rclcpp::Time end_time(metadata.starting_time.time_since_epoch().count() +
+                          metadata.duration.count());
+
+    int start_minutes = static_cast<int>(start_time.seconds() / 60);
+    int end_minutes = static_cast<int>(end_time.seconds() / 60);
+
+    return {start_minutes, end_minutes};
 }
 
 int main(int argc, char *argv[])
