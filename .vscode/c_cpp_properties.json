@@ -6,12 +6,12 @@
                 "${workspaceFolder}/**",
                 "/usr/include/opencv4",
                 "/usr/include/**",
-                "/opt/ros/galactic/include/**",
+                "/opt/ros/humble/include/**",
                 "${workspaceFolder}/src/rosbags_to_csv/include",
                 "${workspaceFolder}/src/rosbag_logger/include",
                 "${workspaceFolder}/src/rosbag_logger/msg/**",
                 "/usr/include/rapidjson",
-                " /usr/local/include/fastcdr"            
+                "/usr/local/include/fastcdr"            
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
